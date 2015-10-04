@@ -1,0 +1,6 @@
+.DS_Store
+libraries/*
+app/libraries/*
+app/resources/tmp/*
+.*.sw[op]
+.c9/*
