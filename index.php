@@ -25,7 +25,7 @@
 if (PHP_SAPI === 'cli-server') {
 	$_SERVER['PHP_SELF'] = '/index.php';
 
-	if ($_SERVER['REQUEST_URI'] != '/' && file_exists('./app/webroot' . $_SERVER['REQUEST_URI'])) {
+	if ($_SERVER['REQUEST_URI'] != '/' && file_exists(__DIR__ . '/app/webroot' . $_SERVER['REQUEST_URI'])) {
 		return false;
 	}
 }
