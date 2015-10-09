@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use \app\libraries\PokedexData;
+
 class PokemonFiles extends \lithium\data\Model {
 	
 	const FATEFUL_FLAG    = 0x1;
@@ -1072,11 +1074,32 @@ class PokemonFiles extends \lithium\data\Model {
 	}
 	public function getSpecies($entity)
 	{
-		return self::$dexToName[$entity->getDexId()];
+		return PokedexData::getSpecies($entity->getDexId());
 	}
 	public function getLevel($entity)
 	{
-		return "TODO";
+		switch(PokedexData::getExperienceType($entity->getDexId()))
+		{
+			case PokedexData::EXPERIENCE_SLOW:
+				$level = 'TODO';
+				break;
+			case PokedexData::EXPERIENCE_MEDIUM_SLOW:
+				$level = 'TODO';
+				break;
+			case PokedexData::EXPERIENCE_MEDIUM_FAST:
+				$level = floor(pow($entity->getExperience(),1/3));
+				break;
+			case PokedexData::EXPERIENCE_FAST:
+				$level = 'TODO';
+				break;
+			case PokedexData::EXPERIENCE_ERRATIC:
+				$level = 'TODO';
+				break;
+			case PokedexData::EXPERIENCE_FLUCTUATING:
+				$level = 'TODO';
+				break;
+		}
+		return $level;
 	}
 	public function getAbility($entity)
 	{
@@ -1089,6 +1112,10 @@ class PokemonFiles extends \lithium\data\Model {
 	public function getHeldItem($entity)
 	{
 		return "TODO";
+	}
+	public function getMove($entity)
+	{
+		return 'TODO';
 	}
 	public function getMove1($entity)
 	{
