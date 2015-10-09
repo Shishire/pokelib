@@ -738,14 +738,14 @@ class PokemonFiles extends \lithium\data\Model {
 	public function getChecksum($entity){                            return unpack('v1out',substr($entity->file->bin,0x06,2))['out']; }
 	// Block A
 	public function getDexId($entity){                               return unpack('v1out',substr($entity->file->bin,0x08,2))['out']; }
-	public function getHeldItem($entity){                            return unpack('v1out',substr($entity->file->bin,0x0A,2))['out']; }
+	public function getHeldItemId($entity){                          return unpack('v1out',substr($entity->file->bin,0x0A,2))['out']; }
 	public function getOriginalTrainerId($entity){                   return unpack('v1out',substr($entity->file->bin,0x0C,2))['out']; }
 	public function getOriginalTrainerSecretId($entity){             return unpack('v1out',substr($entity->file->bin,0x0E,2))['out']; }
 	public function getOriginalTrainerIds($entity){                  return array($entity->getOriginalTrainerID(), $entity->getOriginalTrainerSecretID()); }
 	public function getExperience($entity){                          return unpack('V1out',substr($entity->file->bin,0x10,4))['out']; }
-	public function getAbility($entity){                             return unpack('C1out',substr($entity->file->bin,0x14,1))['out']; }
+	public function getAbilityId($entity){                           return unpack('C1out',substr($entity->file->bin,0x14,1))['out']; }
 	public function getAbilityNumber($entity){                       return unpack('C1out',substr($entity->file->bin,0x15,1))['out']; }
-	public function getTrainingBag($entity){                         return unpack('C1out',substr($entity->file->bin,0x16,1))['out']; }
+	public function getTrainingBagId($entity){                       return unpack('C1out',substr($entity->file->bin,0x16,1))['out']; }
 	public function getTrainingBagHitsRemaining($entity){            return unpack('C1out',substr($entity->file->bin,0x17,1))['out']; }
 	public function getPersonality($entity){                         return unpack('V1out',substr($entity->file->bin,0x18,4))['out']; }
 	public function getNature($entity){                              return unpack('C1out',substr($entity->file->bin,0x1C,1))['out']; }
@@ -753,7 +753,7 @@ class PokemonFiles extends \lithium\data\Model {
 	public function getFatefulEncounter($entity){                    return $entity->getFormsFlags() & self::FATEFUL_FLAG; }
 	public function getFemale($entity){                              return $entity->getFormsFlags() & self::FEMALE_FLAG; }
 	public function getGenderless($entity){                          return $entity->getFormsFlags() & self::GENDERLESS_FLAG; }
-	public function getForm($entity){                                return ($entity->getFormsFlags() & ( ~ ( self::FEMALE_FLAG & self::FATEFUL_FLAG & self::GENDERLESS_FLAG ) ) >> 0x3); }
+	public function getFormId($entity){                              return ($entity->getFormsFlags() & ( ~ ( self::FEMALE_FLAG & self::FATEFUL_FLAG & self::GENDERLESS_FLAG ) ) >> 0x3); }
 	public function getGenderMarker($entity){                        return ($entity->getGenderless() ? 'U' : ($entity->getFemale() ? 'F' : 'M')); }
 	public function getHPEffortValue($entity){                       return unpack('C1out',substr($entity->file->bin,0x1E,1))['out']; }
 	public function getAttackEffortValue($entity){                   return unpack('C1out',substr($entity->file->bin,0x1F,1))['out']; }
@@ -768,7 +768,7 @@ class PokemonFiles extends \lithium\data\Model {
 	public function getContestStatsTough($entity){                   return unpack('C1out',substr($entity->file->bin,0x28,1))['out']; }
 	public function getContestStatsSheen($entity){                   return unpack('C1out',substr($entity->file->bin,0x29,1))['out']; }
 	public function getMarkings($entity){                            return unpack('C1out',substr($entity->file->bin,0x2A,1))['out']; }
-	public function getPokerus($entity){                             return unpack('C1out',substr($entity->file->bin,0x2B,1))['out']; }
+	public function getPokerusStatus($entity){                       return unpack('C1out',substr($entity->file->bin,0x2B,1))['out']; }
 	public function getSuperTrainingFlags($entity){                  return unpack('V1out',substr($entity->file->bin,0x2C,4))['out']; }
 	public function getRibbons($entity){                             return                substr($entity->file->bin,0x30,6); }
 	public function getContestMemoryRibbonCount($entity){            return unpack('C1out',substr($entity->file->bin,0x38,1))['out']; }
@@ -776,10 +776,10 @@ class PokemonFiles extends \lithium\data\Model {
 	public function getDistributionTrainingFlags($entity){           return unpack('C1out',substr($entity->file->bin,0x3A,1))['out']; }
 	// Block B
 	public function getNickname($entity){                            return mb_convert_encoding(mb_strstr(substr($entity->file->bin,0x40,26),mb_convert_encoding("\0", "UTF-16LE"),true,"UTF-16LE"),"UTF-8", "UTF-16LE"); }
-	public function getMove1($entity){                               return unpack('v1out',substr($entity->file->bin,0x5A,2))['out']; }
-	public function getMove2($entity){                               return unpack('v1out',substr($entity->file->bin,0x5C,2))['out']; }
-	public function getMove3($entity){                               return unpack('v1out',substr($entity->file->bin,0x5E,2))['out']; }
-	public function getMove4($entity){                               return unpack('v1out',substr($entity->file->bin,0x60,2))['out']; }
+	public function getMove1Id($entity){                             return unpack('v1out',substr($entity->file->bin,0x5A,2))['out']; }
+	public function getMove2Id($entity){                             return unpack('v1out',substr($entity->file->bin,0x5C,2))['out']; }
+	public function getMove3Id($entity){                             return unpack('v1out',substr($entity->file->bin,0x5E,2))['out']; }
+	public function getMove4Id($entity){                             return unpack('v1out',substr($entity->file->bin,0x60,2))['out']; }
 	public function getMove1PP($entity){                             return unpack('C1out',substr($entity->file->bin,0x62,1))['out']; }
 	public function getMove2PP($entity){                             return unpack('C1out',substr($entity->file->bin,0x63,1))['out']; }
 	public function getMove3PP($entity){                             return unpack('C1out',substr($entity->file->bin,0x64,1))['out']; }
@@ -788,10 +788,10 @@ class PokemonFiles extends \lithium\data\Model {
 	public function getMove2PPUp($entity){                           return unpack('C1out',substr($entity->file->bin,0x67,1))['out']; }
 	public function getMove3PPUp($entity){                           return unpack('C1out',substr($entity->file->bin,0x68,1))['out']; }
 	public function getMove4PPUp($entity){                           return unpack('C1out',substr($entity->file->bin,0x69,1))['out']; }
-	public function getRelearnMove1($entity){                        return unpack('v1out',substr($entity->file->bin,0x6A,2))['out']; }
-	public function getRelearnMove2($entity){                        return unpack('v1out',substr($entity->file->bin,0x6C,2))['out']; }
-	public function getRelearnMove3($entity){                        return unpack('v1out',substr($entity->file->bin,0x6E,2))['out']; }
-	public function getRelearnMove4($entity){                        return unpack('v1out',substr($entity->file->bin,0x70,2))['out']; }
+	public function getRelearnMove1Id($entity){                        return unpack('v1out',substr($entity->file->bin,0x6A,2))['out']; }
+	public function getRelearnMove2Id($entity){                        return unpack('v1out',substr($entity->file->bin,0x6C,2))['out']; }
+	public function getRelearnMove3Id($entity){                        return unpack('v1out',substr($entity->file->bin,0x6E,2))['out']; }
+	public function getRelearnMove4Id($entity){                        return unpack('v1out',substr($entity->file->bin,0x70,2))['out']; }
 	public function getSuperSecretTrainingFlag($entity){             return unpack('C1out',substr($entity->file->bin,0x72,1))['out']; }
 	public function getIndividualValueSpread($entity){               return unpack('V1out',substr($entity->file->bin,0x74,4))['out']; }
 	public function getHPIndividualValue($entity){                   return ($entity->getIndividualValueSpread()>>0) & 31; }
@@ -829,13 +829,13 @@ class PokemonFiles extends \lithium\data\Model {
 	public function getOriginalTrainerMemoryFeeling($entity){        return unpack('C1out',substr($entity->file->bin,0xD0,1))['out']; }
 	public function getDateEggRecieved($entity){                     $date = unpack('C1year/C1month/C1day',substr($entity->file->bin,0xD1,3)); return \DateTime::createFromFormat("y-m-d H:M:S","$date[year]-$date[month]-$date[day] 00:00:00", new \DateTimeZone("UTC"));}
 	public function getDateMet($entity){                             $date = unpack('C1year/C1month/C1day',substr($entity->file->bin,0xD4,3)); return \DateTime::createFromFormat("y-m-d H:M:S","$date[year]-$date[month]-$date[day] 00:00:00", new \DateTimeZone("UTC"));}
-	public function getEggLocation($entity){                         return unpack('v1out',substr($entity->file->bin,0xD8,2))['out']; }
-	public function getMetAtLocation($entity){                       return unpack('v1out',substr($entity->file->bin,0xDA,2))['out']; }
-	public function getPokeball($entity){                            return unpack('C1out',substr($entity->file->bin,0xDC,1))['out']; }
+	public function getEggLocationId($entity){                       return unpack('v1out',substr($entity->file->bin,0xD8,2))['out']; }
+	public function getMetAtLocationId($entity){                     return unpack('v1out',substr($entity->file->bin,0xDA,2))['out']; }
+	public function getPokeballId($entity){                          return unpack('C1out',substr($entity->file->bin,0xDC,1))['out']; }
 	public function getEncounterLevelOriginalTrainerGender($entity){ return unpack('C1out',substr($entity->file->bin,0xDD,1))['out']; }
 	public function getEncounterLevel($entity){                      return $entity->getEncounterLevelOriginalTrainerGender() & 127; }
 	public function getOriginalTrainerIsFemale($entity){             return $entity->getEncounterLevelOriginalTrainerGender() & 128; }
-	public function getEncounterType($entity){                       return unpack('C1out',substr($entity->file->bin,0xDE,1))['out']; }
+	public function getEncounterTypeId($entity){                     return unpack('C1out',substr($entity->file->bin,0xDE,1))['out']; }
 	public function getOriginalTrainerGameId($entity){               return unpack('C1out',substr($entity->file->bin,0xDF,1))['out']; }
 	public function getCountryId($entity){                           return unpack('C1out',substr($entity->file->bin,0xE0,1))['out']; }
 	public function getRegionId($entity){                            return unpack('C1out',substr($entity->file->bin,0xE1,1))['out']; }
@@ -874,9 +874,9 @@ class PokemonFiles extends \lithium\data\Model {
 		'originalTrainerId'                  => array('type' => 'integer', 'null' => true),
 		'originalTrainerSecretId'            => array('type' => 'integer', 'null' => true),
 		'experience'                         => array('type' => 'integer', 'null' => true),
-		'ability'                            => array('type' => 'integer', 'null' => true),
+		'abilityId'                          => array('type' => 'integer', 'null' => true),
 		'abilityNumber'                      => array('type' => 'integer', 'null' => true),
-		'trainingBag'                        => array('type' => 'integer', 'null' => true),
+		'trainingBagId'                      => array('type' => 'integer', 'null' => true),
 		'trainingBagHitsRemaining'           => array('type' => 'integer', 'null' => true),
 		'personality'                        => array('type' => 'integer', 'null' => true),
 		'nature'                             => array('type' => 'integer', 'null' => true),
@@ -897,17 +897,17 @@ class PokemonFiles extends \lithium\data\Model {
 		'contestStatsTough'                  => array('type' => 'integer', 'null' => true),
 		'contestStatsSheen'                  => array('type' => 'integer', 'null' => true),
 		'markings'                           => array('type' => 'integer', 'null' => true),
-		'pokerus'                            => array('type' => 'integer', 'null' => true),
+		'pokerusStatus'                      => array('type' => 'integer', 'null' => true),
 		'superTrainingFlags'                 => array('type' => 'integer', 'null' => true),
 		'ribbons'                            => array('type' => 'string',  'null' => true),
 		'contestMemoryRibbonCount'           => array('type' => 'integer', 'null' => true),
 		'battleMemoryRibbonCount'            => array('type' => 'integer', 'null' => true),
 		'distributionTrainingFlags'          => array('type' => 'integer', 'null' => true),
 		'nickname'                           => array('type' => 'string',  'null' => true),
-		'move1'                              => array('type' => 'integer', 'null' => true),
-		'move2'                              => array('type' => 'integer', 'null' => true),
-		'move3'                              => array('type' => 'integer', 'null' => true),
-		'move4'                              => array('type' => 'integer', 'null' => true),
+		'move1Id'                            => array('type' => 'integer', 'null' => true),
+		'move2Id'                            => array('type' => 'integer', 'null' => true),
+		'move3Id'                            => array('type' => 'integer', 'null' => true),
+		'move4Id'                            => array('type' => 'integer', 'null' => true),
 		'move1PP'                            => array('type' => 'integer', 'null' => true),
 		'move2PP'                            => array('type' => 'integer', 'null' => true),
 		'move3PP'                            => array('type' => 'integer', 'null' => true),
@@ -916,10 +916,10 @@ class PokemonFiles extends \lithium\data\Model {
 		'move2PPUp'                          => array('type' => 'integer', 'null' => true),
 		'move3PPUp'                          => array('type' => 'integer', 'null' => true),
 		'move4PPUp'                          => array('type' => 'integer', 'null' => true),
-		'relearnMove1'                       => array('type' => 'integer', 'null' => true),
-		'relearnMove2'                       => array('type' => 'integer', 'null' => true),
-		'relearnMove3'                       => array('type' => 'integer', 'null' => true),
-		'relearnMove4'                       => array('type' => 'integer', 'null' => true),
+		'relearnMove1Id'                     => array('type' => 'integer', 'null' => true),
+		'relearnMove2Id'                     => array('type' => 'integer', 'null' => true),
+		'relearnMove3Id'                     => array('type' => 'integer', 'null' => true),
+		'relearnMove4Id'                     => array('type' => 'integer', 'null' => true),
 		'superSecretTrainingFlag'            => array('type' => 'integer', 'null' => true),
 		'hpIndividualValue'                  => array('type' => 'integer', 'null' => true),
 		'attackIndividualValue'              => array('type' => 'integer', 'null' => true),
@@ -954,12 +954,12 @@ class PokemonFiles extends \lithium\data\Model {
 		'originalTrainerMemoryFeeling'       => array('type' => 'integer', 'null' => true),
 		'dateEggRecieved'                    => array('type' => 'date',    'null' => true),
 		'dateMet'                            => array('type' => 'date',    'null' => true),
-		'eggLocation'                        => array('type' => 'integer', 'null' => true),
-		'metAtLocation'                      => array('type' => 'integer', 'null' => true),
-		'pokeball'                           => array('type' => 'integer', 'null' => true),
+		'eggLocationId'                      => array('type' => 'integer', 'null' => true),
+		'metAtLocationId'                    => array('type' => 'integer', 'null' => true),
+		'pokeballId'                         => array('type' => 'integer', 'null' => true),
 		'encounterLevel'                     => array('type' => 'integer', 'null' => true),
 		'originalTrainerIsFemale'            => array('type' => 'boolean', 'null' => true),
-		'encounterType'                      => array('type' => 'integer', 'null' => true),
+		'encounterTypeId'                    => array('type' => 'integer', 'null' => true),
 		'originalTrainerGameId'              => array('type' => 'integer', 'null' => true),
 		'countryId'                          => array('type' => 'integer', 'null' => true),
 		'regionId'                           => array('type' => 'integer', 'null' => true),
@@ -978,9 +978,9 @@ class PokemonFiles extends \lithium\data\Model {
 		$entity->originalTrainerId                  = $entity->getOriginalTrainerId();
 		$entity->originalTrainerSecretId            = $entity->getOriginalTrainerSecretId();
 		$entity->experience                         = $entity->getExperience();
-		$entity->ability                            = $entity->getAbility();
+		$entity->abilityId                          = $entity->getAbilityId();
 		$entity->abilityNumber                      = $entity->getAbilityNumber();
-		$entity->trainingBag                        = $entity->getTrainingBag();
+		$entity->trainingBagId                      = $entity->getTrainingBagId();
 		$entity->trainingBagHitsRemaining           = $entity->getTrainingBagHitsRemaining();
 		$entity->personality                        = $entity->getPersonality();
 		$entity->nature                             = $entity->getNature();
@@ -1001,17 +1001,17 @@ class PokemonFiles extends \lithium\data\Model {
 		$entity->contestStatsTough                  = $entity->getContestStatsTough();
 		$entity->contestStatsSheen                  = $entity->getContestStatsSheen();
 		$entity->markings                           = $entity->getMarkings();
-		$entity->pokerus                            = $entity->getPokerus();
+		$entity->pokerusStatus                      = $entity->getPokerusStatus();
 		$entity->superTrainingFlags                 = $entity->getSuperTrainingFlags();
 		$entity->ribbons                            = $entity->getRibbons();
 		$entity->contestMemoryRibbonCount           = $entity->getContestMemoryRibbonCount();
 		$entity->battleMemoryRibbonCount            = $entity->getBattleMemoryRibbonCount();
 		$entity->distributionTrainingFlags          = $entity->getDistributionTrainingFlags();
 		$entity->nickname                           = $entity->getNickname();
-		$entity->move1                              = $entity->getMove1();
-		$entity->move2                              = $entity->getMove2();
-		$entity->move3                              = $entity->getMove3();
-		$entity->move4                              = $entity->getMove4();
+		$entity->move1Id                            = $entity->getMove1Id();
+		$entity->move2Id                            = $entity->getMove2Id();
+		$entity->move3Id                            = $entity->getMove3Id();
+		$entity->move4Id                            = $entity->getMove4Id();
 		$entity->move1PP                            = $entity->getMove1PP();
 		$entity->move2PP                            = $entity->getMove2PP();
 		$entity->move3PP                            = $entity->getMove3PP();
@@ -1020,10 +1020,10 @@ class PokemonFiles extends \lithium\data\Model {
 		$entity->move2PPUp                          = $entity->getMove2PPUp();
 		$entity->move3PPUp                          = $entity->getMove3PPUp();
 		$entity->move4PPUp                          = $entity->getMove4PPUp();
-		$entity->relearnMove1                       = $entity->getRelearnMove1();
-		$entity->relearnMove2                       = $entity->getRelearnMove2();
-		$entity->relearnMove3                       = $entity->getRelearnMove3();
-		$entity->relearnMove4                       = $entity->getRelearnMove4();
+		$entity->relearnMove1Id                     = $entity->getRelearnMove1Id();
+		$entity->relearnMove2Id                     = $entity->getRelearnMove2Id();
+		$entity->relearnMove3Id                     = $entity->getRelearnMove3Id();
+		$entity->relearnMove4Id                     = $entity->getRelearnMove4Id();
 		$entity->superSecretTrainingFlag            = $entity->getSuperSecretTrainingFlag();
 		$entity->hpIndividualValue                  = $entity->getHPIndividualValue();
 		$entity->attackIndividualValue              = $entity->getAttackIndividualValue();
@@ -1058,12 +1058,12 @@ class PokemonFiles extends \lithium\data\Model {
 		$entity->originalTrainerMemoryFeeling       = $entity->getOriginalTrainerMemoryFeeling();
 		$entity->dateEggRecieved                    = $entity->getDateEggRecieved();
 		$entity->dateMet                            = $entity->getDateMet();
-		$entity->eggLocation                        = $entity->getEggLocation();
-		$entity->metAtLocation                      = $entity->getMetAtLocation();
-		$entity->pokeball                           = $entity->getPokeball();
+		$entity->eggLocationId                      = $entity->getEggLocationId();
+		$entity->metAtLocationId                    = $entity->getMetAtLocationId();
+		$entity->pokeballId                         = $entity->getPokeballId();
 		$entity->encounterLevel                     = $entity->getEncounterLevel();
 		$entity->originalTrainerIsFemale            = $entity->getOriginalTrainerIsFemale();
-		$entity->encounterType                      = $entity->getEncounterType();
+		$entity->encounterTypeId                    = $entity->getEncounterTypeId();
 		$entity->originalTrainerGameId              = $entity->getOriginalTrainerGameId();
 		$entity->countryId                          = $entity->getCountryId();
 		$entity->regionId                           = $entity->getRegionId();
@@ -1073,5 +1073,69 @@ class PokemonFiles extends \lithium\data\Model {
 	public function getSpecies($entity)
 	{
 		return self::$dexToName[$entity->getDexId()];
+	}
+	public function getLevel($entity)
+	{
+		return "TODO";
+	}
+	public function getAbility($entity)
+	{
+		return "TODO";
+	}
+	public function getPokerus($entity)
+	{
+		return "TODO";
+	}
+	public function getHeldItem($entity)
+	{
+		return "TODO";
+	}
+	public function getMove1($entity)
+	{
+		return $entity->getMove($entity->getMove1Id());
+	}
+	public function getMove2($entity)
+	{
+		return $entity->getMove($entity->getMove2Id());
+	}
+	public function getMove3($entity)
+	{
+		return $entity->getMove($entity->getMove3Id());
+	}
+	public function getMove4($entity)
+	{
+		return $entity->getMove($entity->getMove4Id());
+	}
+	public function getRelearnMove1($entity)
+	{
+		return $entity->getMove($entity->getRelearnMove1Id());
+	}
+	public function getRelearnMove2($entity)
+	{
+		return $entity->getMove($entity->getRelearnMove2Id());
+	}
+	public function getRelearnMove3($entity)
+	{
+		return $entity->getMove($entity->getRelearnMove3Id());
+	}
+	public function getRelearnMove4($entity)
+	{
+		return $entity->getMove($entity->getRelearnMove4Id());
+	}
+	public function getOriginalTrainerGenderMarker($entity)
+	{
+		return $entity->getOriginalTrainerIsFemale() ? 'F' : 'M';
+	}
+	public function getPokeball($entity)
+	{
+		return "TODO";
+	}
+	public function getCountry($entity)
+	{
+		return "TODO";
+	}
+	public function getRegion($entity)
+	{
+		return "TODO";
 	}
 }

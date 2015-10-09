@@ -1,9 +1,41 @@
 <div style="word-wrap: break-word">
     <?=$this->html->link('Download', array('controller' => 'pokemon', 'action' => 'download', 'id' => $pokemon->_id));?><br />
-    Nickname: <?=$pokemon->nickname?><br />
-    Species: <?=$pokemon->getSpecies()?><br />
-    Date Met: <?=$pokemon->dateMet->toDateTime()->format("Y-m-d")?>
+    Nickname: <?=$pokemon->getNickname();?><br />
+    Species: <?=$pokemon->getSpecies();?><br />
+    Level: <?=$pokemon->getLevel();?><br />
+    Ability: <?=$pokemon->getAbility();?><br />
+    Fateful: <?=$pokemon->getFatefulEncounter();?><br />
+    Gender: <?=$pokemon->getGenderMarker();?><br />
+    Pokerus: <?=$pokemon->getPokerus();?><br />
+    Held Item: <?=$pokemon->getHeldItem();?><br />
+    Move 1: <?=$pokemon->getMove1();?><br />
+    Move 2: <?=$pokemon->getMove2();?><br />
+    Move 3: <?=$pokemon->getMove3();?><br />
+    Move 4: <?=$pokemon->getMove4();?><br />
+    Egg Move 1: <?=$pokemon->getRelearnMove1();?><br />
+    Egg Move 2: <?=$pokemon->getRelearnMove2();?><br />
+    Egg Move 3: <?=$pokemon->getRelearnMove3();?><br />
+    Egg Move 4: <?=$pokemon->getRelearnMove4();?><br />
+    HP IV: <?=$pokemon->getHPIndividualValue();?><br />
+    Attack IV: <?=$pokemon->getAttackIndividualValue();?><br />
+    Defense IV: <?=$pokemon->getDefenseIndividualValue();?><br />
+    Special Attack IV: <?=$pokemon->getSpecialAttackIndividualValue();?><br />
+    Special Defense IV: <?=$pokemon->getSpecialDefenseIndividualValue();?><br />
+    Speed IV: <?=$pokemon->getSpeedIndividualValue();?><br />
+    HP EV: <?=$pokemon->getHPEffortValue();?><br />
+    Attack EV: <?=$pokemon->getAttackEffortValue();?><br />
+    Defense EV: <?=$pokemon->getDefenseEffortValue();?><br />
+    Special Attack EV: <?=$pokemon->getSpecialAttackEffortValue();?><br />
+    Special Defense EV: <?=$pokemon->getSpecialDefenseEffortValue();?><br />
+    Speed EV: <?=$pokemon->getSpeedEffortValue();?><br />
+    Is Egg?: <?=$pokemon->getIsEgg();?><br />
+    Is Nicknamed: <?=$pokemon->getIsNicknamed();?><br />
+    OT Name: <?=$pokemon->getOriginalTrainerName();?><br />
+    OT Gender: <?=$pokemon->getOriginalTrainerGenderMarker();?><br />
+    OT ID: <?=$pokemon->getOriginalTrainerId();?><br />
+    OT Secret ID: <?=$pokemon->getOriginalTrainerSecretId();?><br />
+    Pokeball: <?=$pokemon->getPokeball();?><br />
+    Encounter Level: <?=$pokemon->getEncounterLevel();?><br />
+    Country: <?=$pokemon->getCountry();?><br />
+    Region: <?=$pokemon->getRegion();?><br />
 </div>
-<pre>
-    <?=print_r($pokemon)?>
-</pre>
