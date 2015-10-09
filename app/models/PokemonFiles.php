@@ -2,7 +2,7 @@
 
 namespace app\models;
 
-use \app\libraries\PokedexData;
+use \app\misc\PokedexData;
 
 class PokemonFiles extends \lithium\data\Model {
 	
