@@ -17,7 +17,8 @@ class PokemonController extends \lithium\action\Controller
 		$pokemon = PokemonFiles::find($this->request->id);
 		header('Content-Type: application/octet-stream');
 		header('Content-Length: '.strlen($pokemon->file->bin));
-		header('Content-Disposition: attachment; filename="'.$pokemon->getNickname().' - '.strtoupper(dechex($pokemon->getPersonality())).'.pk6"');
+		$filename = sprintf("%s - %X.pk6",$pokemon->getNickname(),$pokemon->getPersonality());
+		header('Content-Disposition: attachment; filename="'.$filename.'.pk6"');
 		echo $pokemon->file->bin;
 		exit();
 	}
