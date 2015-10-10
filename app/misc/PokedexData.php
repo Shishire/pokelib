@@ -11,7 +11,7 @@ class PokedexData
 	const EXPERIENCE_FLUCTUATING = 4;
 	const EXPERIENCE_ERRATIC     = 5;
 
-	protectd static $pokemon = array(
+	protected static $pokemon = array(
 		1   => array('name' => 'Bulbasaur',   'experience' => self::EXPERIENCE_MEDIUM_SLOW),
 		2   => array('name' => 'Ivysaur',     'experience' => self::EXPERIENCE_MEDIUM_SLOW),
 		3   => array('name' => 'Venusaur',    'experience' => self::EXPERIENCE_MEDIUM_SLOW),
@@ -735,7 +735,7 @@ class PokedexData
 		721 => array('name' => 'Volcanion',   'experience' => self::EXPERIENCE_SLOW)
 		);
 	
-	protected static $experienceiTable = array(
+	protected static $experienceTable = array(
 		1   => array(self::EXPERIENCE_SLOW => 0,       self::EXPERIENCE_MEDIUM_SLOW => 0,       self::EXPERIENCE_MEDIUM_FAST => 0,       self::EXPERIENCE_FAST => 0,      self::EXPERIENCE_ERRATIC => 0,      self::EXPERIENCE_FLUCTUATING => 0       ),
 		2   => array(self::EXPERIENCE_SLOW => 10,      self::EXPERIENCE_MEDIUM_SLOW => 9,       self::EXPERIENCE_MEDIUM_FAST => 8,       self::EXPERIENCE_FAST => 6,      self::EXPERIENCE_ERRATIC => 15,     self::EXPERIENCE_FLUCTUATING => 4       ),
 		3   => array(self::EXPERIENCE_SLOW => 33,      self::EXPERIENCE_MEDIUM_SLOW => 57,      self::EXPERIENCE_MEDIUM_FAST => 27,      self::EXPERIENCE_FAST => 21,     self::EXPERIENCE_ERRATIC => 52,     self::EXPERIENCE_FLUCTUATING => 13      ),
@@ -848,10 +848,11 @@ class PokedexData
 	public static function getLevel($experience, $dexId)
 	{
 		$experienceType = self::getExperienceType($dexId);
-		$level = 0;
-		while ($experience >  self::$experienceTable[$i][$experienceType])
+		$level = 100;
+		while ($experience < self::$experienceTable[$level][$experienceType])
 		{
-			$level++;
+			$level--;
 		}
+		return $level;
 	}
 }
