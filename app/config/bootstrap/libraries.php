@@ -125,4 +125,6 @@ Libraries::add('app', array('default' => true));
 // 	Libraries::add(basename($path), array('path' => $path));
 // }
 
+Libraries::add('TechyShishy', array('path' => LITHIUM_APP_PATH . '/libraries/TechyShishy'));
+
 ?>
